@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <body ng-app="myApp">
+    <div
+      class="container p-lg-5"
+      ng-controller="myCtrl"
+      ng-init="releaseDate='01-01-1999';toreleaseDate='01-01-2024'
+  "
+    >
+      <div class="row">
+        <div class="col-12">
+          <div
+            class="d-flex gap-5 shadow rounded-3 flex-row justify-content-center"
+          >
+            <div class="w-50 d-flex flex-row">
+              <span class="p-4">From</span>
+              <input
+                type="text"
+                class="form-control mt-3"
+                ng-model="releaseDate"
+                style="height: 45px; background-color: gray; color: white"
+              />
+              <span class="p-4">To</span>
+              <input
+                type="text"
+                name="toDate"
+                class="form-control mt-3"
+                id="toDate"
+                ng-model="toreleaseDate"
+                style="height: 45px; background-color: gray; color: white"
+              />
+              <button
+                ng-click="getM()"
+                class="btn m-3 mt-4"
+                style="background-color: gray; color: white"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+          <div
+            class="d-flex flex-wrap mt-4 align-baseline justify-content-center gap-3"
+          >
+            <div
+              id="viewCard"
+              class=""
+              ng-repeat="movie in movies | filter:releaseDateFilter"
+            >
+              <div
+                class="card shadow rounded-3"
+                style="width: 18rem; height: 22rem"
+              >
+                <img
+                  class="card-img-top"
+                  src="{{movie.backdrop_path}}"
+                  alt="Movie Image"
+                />
+                <div class="card-body">
+                  <div><span>⭐ 7.9</span><span>🤍 Rate</span></div>
+                  <h5 class="card-title">{{movie.original_title}}</h5>
+                  <p>2023 2h 34m</p>
+                  <p>{{movie.first_aired | date:'fullDate' }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="index.js"></script>
+</html>
